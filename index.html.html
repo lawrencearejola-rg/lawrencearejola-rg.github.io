@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lawrence Arejola | Customer Support VA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2340;
+    --teal: #1a7f6e;
+    --teal-light: #e6f5f2;
+    --gold: #c9933a;
+    --cream: #faf8f4;
+    --text: #1a1a1a;
+    --muted: #5a5a5a;
+    --border: #e2ddd6;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.85rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    gap: 4rem;
+  }
+  .hero-text { flex: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-light); color: var(--teal);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  h1 em { font-style: italic; color: var(--teal); }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 480px; margin-bottom: 2rem; font-weight: 300;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 28px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary { background: var(--teal); color: #fff; border: none; }
+  .btn-primary:hover { background: #15695c; }
+  .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+
+  .hero-visual {
+    width: 300px; flex-shrink: 0;
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: var(--teal); opacity: 0.15;
+    border-radius: 50%;
+  }
+  .stat-row { display: flex; flex-direction: column; gap: 1.2rem; }
+  .stat { color: #fff; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: #fff; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { font-size: 1rem; color: var(--gold); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 0.2rem 0; }
+  .avail-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(26,127,110,0.3); color: #4ecdb4;
+    border-radius: 4px; padding: 6px 12px; font-size: 0.78rem;
+    font-weight: 500; margin-top: 1rem;
+  }
+  .avail-tag::before { content: ''; width: 6px; height: 6px; background: #4ecdb4; border-radius: 50%; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--teal); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--navy); margin-bottom: 3rem; line-height: 1.2;
+  }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .service-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 10px; padding: 2rem;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--teal);
+    transform: scaleY(0); transition: transform 0.25s;
+    transform-origin: bottom;
+  }
+  .service-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-icon {
+    width: 44px; height: 44px; background: var(--teal-light);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem; font-size: 20px;
+  }
+  .service-card h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 0.75rem; font-weight: 500; }
+  .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .service-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .tool-tag {
+    font-size: 0.72rem; padding: 3px 10px;
+    background: var(--teal-light); color: var(--teal);
+    border-radius: 100px; font-weight: 500;
+  }
+
+  /* TOOLS */
+  .tools-section { background: var(--navy); border-radius: 16px; padding: 3rem; margin: 0 2rem; max-width: 1100px; }
+  .tools-section .section-label { color: var(--gold); }
+  .tools-section h2 { color: #fff; margin-bottom: 2rem; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+  .tool-item {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 1.2rem;
+    transition: all 0.2s;
+  }
+  .tool-item:hover { background: rgba(26,127,110,0.25); border-color: var(--teal); }
+  .tool-name { font-size: 0.9rem; color: #fff; font-weight: 500; margin-bottom: 4px; }
+  .tool-cat { font-size: 0.75rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* WORK SAMPLES */
+  .samples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .sample-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    transition: all 0.25s;
+  }
+  .sample-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .sample-header {
+    background: var(--navy); padding: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sample-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .sample-title { font-size: 0.85rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .sample-body { padding: 1.5rem; }
+  .sample-body h4 { font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; font-weight: 500; }
+  .sample-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+  .sample-result {
+    margin-top: 1rem; padding: 0.75rem;
+    background: var(--teal-light); border-radius: 6px;
+    font-size: 0.82rem; color: var(--teal); font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 2rem; padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-size: 0.82rem; color: var(--muted); padding-top: 4px; }
+  .exp-company { font-size: 0.78rem; color: var(--teal); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .exp-role { font-size: 1.1rem; color: var(--navy); font-weight: 500; margin-bottom: 0.75rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li { font-size: 0.88rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--teal); }
+
+  /* VALUES */
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .value-card {
+    padding: 1.5rem; border: 1px solid var(--border);
+    border-radius: 8px; text-align: center;
+    background: #fff; transition: all 0.2s;
+  }
+  .value-card:hover { border-color: var(--teal); }
+  .value-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .value-card h4 { font-size: 0.9rem; color: var(--navy); font-weight: 500; margin-bottom: 6px; }
+  .value-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center; padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+    margin: 0 2rem 4rem; border-radius: 16px;
+    max-width: 1100px;
+  }
+  .cta-section .section-label { color: var(--gold); }
+  .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+  .cta-section p { color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2rem; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold { background: var(--gold); color: #fff; border: none; }
+  .btn-gold:hover { background: #b5822e; }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.82rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Lawrence Arejola</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Available for hire</div>
+    <h1>Customer Support <em>Specialist</em> &amp; Virtual Assistant</h1>
+    <p class="hero-sub">I help SaaS companies and e-commerce brands deliver exceptional support experiences — faster resolutions, happier customers, zero chaos.</p>
+    <div class="hero-cta">
+      <a href="mailto:lawrence.arejola30@gmail.com" class="btn btn-primary">Hire Me</a>
+      <a href="#work" class="btn btn-outline">See My Work</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-label">Tickets handled daily</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">95<span>%+</span></div>
+        <div class="stat-label">SLA compliance rate</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">3<span>yrs</span></div>
+        <div class="stat-label">Operations experience</div>
+      </div>
+      <div class="avail-tag">Open to full-time or part-time</div>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="section-label">What I Do</div>
+  <h2>Services I offer</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎫</div>
+      <h3>Customer Support</h3>
+      <p>End-to-end ticket management via email and chat — from triage and escalation to resolution and follow-up, with SLA compliance built in.</p>
+      <div class="service-tools">
+        <span class="tool-tag">Zendesk</span>
+        <span class="tool-tag">Zoho Desk</span>
+        <span class="tool-tag">Email & Chat</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>Workflow Automation</h3>
+      <p>I configure triggers, macros, and automations to reduce manual workload, improve response times, and streamline your support operations.</p>
+      <div class="service-tools">
+        <span class="tool-tag">Triggers</span>
+        <span class="tool-tag">Macros</span>
+        <span class="tool-tag">Automations</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Reporting & Monitoring</h3>
+      <p>Custom dashboards and reports to track ticket volume, response rates, and team performance — giving you visibility into what matters.</p>
+      <div class="service-tools">
+        <span class="tool-tag">Dashboards</span>
+        <span class="tool-tag">Tagging</span>
+        <span class="tool-tag">Analytics</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>E-commerce VA Support</h3>
+      <p>Order tracking, billing inquiries, refund handling, and product troubleshooting for e-commerce and SaaS brands.</p>
+      <div class="service-tools">
+        <span class="tool-tag">Order Management</span>
+        <span class="tool-tag">Billing Support</span>
+        <span class="tool-tag">Returns</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗂️</div>
+      <h3>Admin & General VA</h3>
+      <p>Calendar management, data entry, documentation, internal notes, and day-to-day administrative tasks to keep your business running smoothly.</p>
+      <div class="service-tools">
+        <span class="tool-tag">Google Workspace</span>
+        <span class="tool-tag">Docs</span>
+        <span class="tool-tag">Scheduling</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <h3>Technical Support</h3>
+      <p>System-based troubleshooting and issue resolution for SaaS platforms — turning complex technical problems into clear, resolved tickets.</p>
+      <div class="service-tools">
+        <span class="tool-tag">SaaS Support</span>
+        <span class="tool-tag">Troubleshooting</span>
+        <span class="tool-tag">Escalation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tools-section" id="tools" style="margin: 0 auto; max-width: 1100px; margin-bottom: 5rem; border-radius: 16px; padding: 3rem; background: #0f2340;">
+  <div class="section-label" style="color: #c9933a; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.75rem;">My Tech Stack</div>
+  <h2 style="color: #fff; margin-bottom: 2rem; font-family: 'Playfair Display', serif;">Tools I work with</h2>
+  <div class="tools-grid">
+    <div class="tool-item"><div class="tool-name">Zendesk</div><div class="tool-cat">Helpdesk</div></div>
+    <div class="tool-item"><div class="tool-name">Zoho Desk</div><div class="tool-cat">Helpdesk</div></div>
+    <div class="tool-item"><div class="tool-name">Google Workspace</div><div class="tool-cat">Productivity</div></div>
+    <div class="tool-item"><div class="tool-name">Gmail</div><div class="tool-cat">Email</div></div>
+    <div class="tool-item"><div class="tool-name">Google Sheets</div><div class="tool-cat">Reporting</div></div>
+    <div class="tool-item"><div class="tool-name">Google Docs</div><div class="tool-cat">Documentation</div></div>
+    <div class="tool-item"><div class="tool-name">Slack</div><div class="tool-cat">Communication</div></div>
+    <div class="tool-item"><div class="tool-name">Notion</div><div class="tool-cat">Documentation</div></div>
+    <div class="tool-item"><div class="tool-name">Loom</div><div class="tool-cat">Video / Demos</div></div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="section-label">Portfolio</div>
+  <h2>Sample work</h2>
+  <div class="samples-grid">
+    <div class="sample-card">
+      <div class="sample-header">
+        <div class="sample-dot" style="background:#ef4444"></div>
+        <div class="sample-dot" style="background:#eab308"></div>
+        <div class="sample-dot" style="background:#22c55e"></div>
+        <div class="sample-title">Zendesk — Billing Dispute</div>
+      </div>
+      <div class="sample-body">
+        <h4>Billing dispute — SaaS client</h4>
+        <p>Customer was charged twice after a plan upgrade. I identified the root cause in the billing system, issued a refund, and sent a templated follow-up to prevent future occurrences.</p>
+        <div class="sample-result">✓ Resolved in 1 reply · CSAT: Satisfied · Escalation avoided</div>
+      </div>
+    </div>
+    <div class="sample-card">
+      <div class="sample-header">
+        <div class="sample-dot" style="background:#ef4444"></div>
+        <div class="sample-dot" style="background:#eab308"></div>
+        <div class="sample-dot" style="background:#22c55e"></div>
+        <div class="sample-title">Zendesk — Automation Setup</div>
+      </div>
+      <div class="sample-body">
+        <h4>Auto-tagging workflow</h4>
+        <p>Built a trigger system that auto-tags tickets by issue type (billing, technical, account), reducing manual triage time and improving routing accuracy across the team.</p>
+        <div class="sample-result">✓ Reduced triage time by ~40% · Improved ticket routing accuracy</div>
+      </div>
+    </div>
+    <div class="sample-card">
+      <div class="sample-header">
+        <div class="sample-dot" style="background:#ef4444"></div>
+        <div class="sample-dot" style="background:#eab308"></div>
+        <div class="sample-dot" style="background:#22c55e"></div>
+        <div class="sample-title">Email — Technical Support</div>
+      </div>
+      <div class="sample-body">
+        <h4>Login issue — account locked</h4>
+        <p>Customer unable to access their account due to a failed 2FA setup. Walked them through a step-by-step reset process with screenshots, fully resolving the issue without escalation.</p>
+        <div class="sample-result">✓ Resolved in 2 replies · No escalation needed · 5-star rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">Background</div>
+  <h2>Work experience</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">2025 – Present</div>
+      <div>
+        <div class="exp-company">Freelance / Portfolio Projects</div>
+        <div class="exp-role">Customer Support Virtual Assistant</div>
+        <ul class="exp-bullets">
+          <li>Managed 20+ customer tickets daily with 95%+ SLA compliance and under 2-hour first response time</li>
+          <li>Configured Zendesk triggers, automations, and macros reducing manual workload significantly</li>
+          <li>Created dashboards and reports to monitor ticket performance and team workflow efficiency</li>
+          <li>Applied structured tagging and ticket classification for accurate issue tracking and reporting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan–Oct 2025</div>
+      <div>
+        <div class="exp-company">Gemini Gaming Management Corporation</div>
+        <div class="exp-role">Broadcaster / Commentator (Live Casino)</div>
+        <ul class="exp-bullets">
+          <li>Delivered live commentary and hosted broadcasts for a professional audience</li>
+          <li>Built strong communication, adaptability, and composure under pressure</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2022 – Feb 2024</div>
+      <div>
+        <div class="exp-company">Boks Eatery</div>
+        <div class="exp-role">Restaurant Branch Manager</div>
+        <ul class="exp-bullets">
+          <li>Managed daily operations of a high-volume branch ensuring workflow and customer satisfaction</li>
+          <li>Supervised and scheduled a team of 20+ employees while maintaining operational efficiency</li>
+          <li>Maintained accurate records of operations, inventory, and staff coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">What drives me</div>
+  <h2>Core values</h2>
+  <div class="values-grid">
+    <div class="value-card"><div class="value-icon">🎯</div><h4>Accountability</h4><p>I own my work — every ticket, every task, every deadline.</p></div>
+    <div class="value-card"><div class="value-icon">💡</div><h4>Continuous Learning</h4><p>I stay current with tools and best practices to keep improving.</p></div>
+    <div class="value-card"><div class="value-icon">🤝</div><h4>Customer-Centric</h4><p>Every interaction is a chance to build trust and loyalty.</p></div>
+    <div class="value-card"><div class="value-icon">🔍</div><h4>Attention to Detail</h4><p>Accuracy in documentation and responses is non-negotiable.</p></div>
+    <div class="value-card"><div class="value-icon">🔄</div><h4>Adaptability</h4><p>Fast-moving environments are where I do my best work.</p></div>
+    <div class="value-card"><div class="value-icon">✨</div><h4>Professional Integrity</h4><p>Honest, transparent, and reliable — always.</p></div>
+  </div>
+</section>
+
+<div class="cta-section" id="contact" style="text-align: center; padding: 5rem 2rem; background: #0f2340; margin: 0 auto 4rem; border-radius: 16px; max-width: 1100px;">
+  <div class="section-label" style="color: #c9933a; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.75rem;">Let's work together</div>
+  <h2 style="color: #fff; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Ready to hire a reliable VA?</h2>
+  <p style="color: rgba(255,255,255,0.6); max-width: 440px; margin: 0 auto 2rem; font-size: 0.95rem;">I'm available for full-time, part-time, and project-based work. Let's talk about how I can help your team.</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="mailto:lawrence.arejola30@gmail.com" class="btn btn-gold" style="background: #c9933a; color: #fff; padding: 12px 28px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 500;">Email Me</a>
+    <a href="tel:09243776985" class="btn btn-ghost" style="background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 12px 28px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 500;">09243776985</a>
+  </div>
+  <p style="color: rgba(255,255,255,0.35); font-size: 0.8rem; margin-top: 1.5rem;">Cavite, Philippines · Open to remote work worldwide</p>
+</div>
+
+<footer>
+  <p>© 2025 Lawrence Arejola · Customer Support Specialist & Virtual Assistant</p>
+</footer>
+
+</body>
+</html>
